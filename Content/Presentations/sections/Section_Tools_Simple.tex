@@ -78,7 +78,7 @@
 
   \begin{itemize}
     \item Knows about parallel dispatch
-    \item Knows about allocations, deallocations and deep\_copy
+    \item Knows about allocations, deallocations and \texttt{deep\_copy}
     \item Provides region markers
     \item Leverages naming information (kernels, Views)
   \end{itemize}
@@ -215,8 +215,7 @@ double, void>, Kokkos::Cuda, Kokkos::InvalidType, Kokkos::RangePolicy>)
 \begin{itemize}
 \item Simple tool producing a summary similar to nvprof
 \item Good way to get a rough overview of whats going on
-\item Writes a file \texttt{HOSTNAME-PROCESSID.dat} per process
-\item Use the reader accompanying the tool to read the data
+\item Ordered by sum of time spend in kernel
 \end{itemize}
 
 Usage:
@@ -228,6 +227,25 @@ Usage:
   export KOKKOS_TOOLS_LIBS=${PWD}/kp_kernel_timer.so
   export PATH=${PATH}:${PWD}
   cd ${WORKDIR}
+  ./text.cuda
+\end{code}
+
+\end{frame}
+
+%==========================================================================
+
+\begin{frame}[fragile]{An Example Code}
+\textbf{Lets use SimpleKernelTimer from Kokkos Tools:}
+
+\begin{itemize}
+\item Can writes a file \texttt{HOSTNAME-PROCESSID.dat} per process
+\item Can also export result in \texttt{JSON} form
+\item Use the reader accompanying the tool to read the data
+\end{itemize}
+
+Usage:
+
+\begin{code}[mathescape=false]
   ./text.cuda
   kp_reader *.dat
 \end{code}
